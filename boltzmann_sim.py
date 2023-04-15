@@ -5,13 +5,13 @@ import matplotlib.pyplot as plt
 import matplotlib
 from matplotlib import animation
 from matplotlib.animation import PillowWriter
-import scienceplots
 
-# plt.style.use(['science'])
+
+
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 #DEFINING THE NUMBER OF PARTICLES AND GENERATE THEIR POSITIONS AT RANDOM (BETWEEN 0 AND 1)
-n_particles = 500
+n_particles = 10000
 r = torch.rand((2,n_particles)).to(device)
 
 ixr = r[0]>0.5 #Right
@@ -117,5 +117,5 @@ def animate(i):
 
 writer = animation.FFMpegWriter(fps=30)
 ani = animation.FuncAnimation(fig, animate, frames=500, interval=50, blit=True)
-ani.save('./ani3.mp4',writer=writer,dpi=100)
+ani.save('./boltzmann_sim.mp4',writer=writer,dpi=100)
 
